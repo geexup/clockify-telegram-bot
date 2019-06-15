@@ -2,3 +2,4 @@ node_modules/
 yarn.lock
 /old/
 src/environment/presets/private\.ts
+dist/

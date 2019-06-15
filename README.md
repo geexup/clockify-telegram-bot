@@ -32,7 +32,6 @@ $: yarn dev
 ## TODO
 - Add tslint
 - Add tests
-- Add Dockerfile
 - Add state machine to scenes
 - Add English language
 - Add Google Authenticator for Admin proof

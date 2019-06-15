@@ -6,7 +6,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "nodemon -e .ts,.js --exec ts-node ./src/index.ts"
+    "dev": "nodemon -e .ts,.js --exec ts-node ./src/index.ts",
+    "prod": "node ./dist/index.js",
+    "build": "tsc"
   },
   "devDependencies": {
     "@types/moment": "2.13.0",
