@@ -29,6 +29,27 @@ $: yarn
 $: yarn dev
 ```
 
+## Docker
+[Here](https://hub.docker.com/r/geexup/clockify-telegram-bot) you can find ready images
+
+### Build
+To build docker image just execute this command:
+```
+$: docker build -t <IMAGE_TAG_NAME> .
+```
+
+### RUN
+
+Simple run:
+```
+docker run --name clockify-bot geexup/clockify-telegram-bot
+```
+
+You can pass into container your own environment preset with bot token and mongoDB address as well:
+```
+docker run -v <PATH_TO_CONFIG>:/srv/environment/presets/preset.js BOT_CURRENT_PRESET=<PRESET_NAME> geexup/clockify-telegram-bot
+```
+
 ## TODO
 - Add tslint
 - Add tests
