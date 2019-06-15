@@ -13,7 +13,7 @@ import { TelegrafMongoSession } from 'telegraf-session-mongodb-fork';
 const Stage = require('telegraf/stage');
 const SocksAgent = require('socks5-https-client/lib/Agent');
 
-const socksAgent = new SocksAgent(EnvironmentManager.current.PROXY);
+const socksAgent = EnvironmentManager.current.PROXY ? new SocksAgent(EnvironmentManager.current.PROXY) : undefined;
 export const bot = new Telegraf(EnvironmentManager.current.BOT_TOKEN, { telegram: { agent: socksAgent }});
 
 // Mongo session
