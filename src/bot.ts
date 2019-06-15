@@ -1,4 +1,4 @@
-import { EnvironmentManager } from '../environment';
+import { EnvironmentManager } from './environment';
 import { sendBuhatSticker } from './utils/send-buhat-sticker';
 
 import Telegraf from 'telegraf';

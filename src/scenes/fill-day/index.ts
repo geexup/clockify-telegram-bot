@@ -9,7 +9,7 @@ import { getFillDayState } from './helpers/get-state';
 import { FILL_DAY_STATE, IFillDayState } from './helpers/states';
 import { blockLeaveMiddleware } from './helpers/block-leave';
 import { reenterScene } from './helpers/reenter-scene';
-import { createRange } from '../../../clockify/create-range';
+import { createClockifyTimeRange } from './helpers/create-clockify-time-range';
 import { CKLTimeEntryPostRequest } from 'clockify-api/dist/api/workspaces/time-entry';
 
 const Stage = require('telegraf/stage');
@@ -101,7 +101,7 @@ async function selectProjectCallback(ctx: MongoSessionContext) {
 
 async function fillProjectCallback(ctx: MongoSessionContext) {
   const hours = parseInt(ctx.message.text);
-  const range = createRange(hours);
+  const range = createClockifyTimeRange(hours);
   const workspace = getClockifyWorkspace(ctx);
 
   const request: Partial<CKLTimeEntryPostRequest> = {

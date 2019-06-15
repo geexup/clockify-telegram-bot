@@ -1,7 +1,7 @@
 import { ContextMessageUpdate } from 'telegraf';
 import { ClockifyApi } from 'clockify-api';
 import { getSession } from '../utils';
-import { bot } from '..';
+import { bot } from '../bot';
 import { I18nManager } from '../i18n';
 import { sendMainMenu } from '../menu/send-menu';
 
