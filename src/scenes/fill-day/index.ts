@@ -7,8 +7,8 @@ import { getSession } from '../../utils';
 import { MongoSessionContext } from 'telegraf-session-mongodb-fork';
 import { getFillDayState } from './helpers/get-state';
 import { FILL_DAY_STATE, IFillDayState } from './helpers/states';
-import { blockLeaveMiddleware } from './helpers/block-leave';
-import { reenterScene } from './helpers/reenter-scene';
+import { blockLeaveMiddleware } from '../../utils/block-leave';
+import { reenterScene } from '../../utils/reenter-scene';
 import { createClockifyTimeRange } from './helpers/create-clockify-time-range';
 import { CKLTimeEntryPostRequest } from 'clockify-api/dist/api/workspaces/time-entry';
 
@@ -17,7 +17,6 @@ const Scene = require('telegraf/scenes/base');
 
 // TODO: Add FSM
 
-// Greeter scene
 export const fillDayScene = new Scene('fill-day');
 fillDayScene.hears(/↩️/i, (ctx: ContextMessageUpdate) => {
   const state = getFillDayState(ctx);

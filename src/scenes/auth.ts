@@ -8,7 +8,6 @@ import { sendMainMenu } from '../menu/send-menu';
 const Stage = require('telegraf/stage');
 const Scene = require('telegraf/scenes/base');
 
-// Greeter scene
 export const authScene = new Scene('auth');
 authScene.enter((ctx: ContextMessageUpdate) => I18nManager.replyWithMarkdown(ctx, 'SCENE_AUTH_WELCOME_MD'));
 authScene.leave((ctx: ContextMessageUpdate) => sendMainMenu(ctx));

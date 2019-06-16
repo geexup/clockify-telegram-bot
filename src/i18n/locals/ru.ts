@@ -1,6 +1,9 @@
 import { I18n } from '../interface';
 
 export const ru_ru: I18n = {
+  LOCALE_FLAG: '🇷🇺',
+  LOCALE_NAME: 'Русский',
+
   MIDDLEWARE_ADMIN_DENIED: 'Вы должны быть админом',
   MIDDLEWARE_LOGINED_DENIED: 'Вы не вошли. Чтобы войти используйте команду /login',
 
@@ -13,6 +16,7 @@ export const ru_ru: I18n = {
   MENU_MAIN_TITLE_MD: '*Выберете действие*:',
   MENU_MAIN_INFO: 'Информация о пользователе',
   MENU_MAIN_FILL_DAY: 'Заполнить день',
+  MENU_MAIN_SETTINGS: 'Настройки',
   MENU_MAIN_LOGIN: 'Войти в Clockify',
   MENU_MAIN_LOGOUT: 'Выход',
 
@@ -60,5 +64,9 @@ export const ru_ru: I18n = {
     'CAADAgADJgUAApkvSwpzAxyiCwNoKwI',
     'CAADAgADfwIAApkvSwpYY0yPUCF8XgI',
     'CAADAgADEAUAApkvSwoHFO4R6fTsdgI'
-  ]
+  ],
+
+  SCENE_SETTINGS_SELECT_LANGUAGE_BTN: 'Выбрать язык',
+  SCENE_SETTINGS_SELECT_LANGUAGE: 'Выберете язык:',
+  SCENE_SETTINGS_SELECT_LANGUAGE_SUCCESS: 'Язык успешно сменен!'
 };
