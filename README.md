@@ -24,7 +24,7 @@ $: yarn
 3. Get [mongoDB](https://www.mongodb.com/) up and running
 
 ## Run
-1. Go to Bot Father (@@BotFather) in Telegram and get your bot token
+1. Go to Bot Father (@BotFather) in Telegram and get your bot token
 2. Paste token into `BOT_TOKEN` in `src/environment/presets/dev.ts`
 3. Run bot:
 ```

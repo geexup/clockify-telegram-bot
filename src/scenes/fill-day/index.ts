@@ -32,8 +32,8 @@ fillDayScene.hears(/↩️/i, (ctx: ContextMessageUpdate) => {
 
 fillDayScene.leave(blockLeaveMiddleware, sendMainMenu);
 fillDayScene.enter(async (ctx: MongoSessionContext) => {
-  const workspace = getClockifyWorkspace(ctx)
-  const projects = await getClockify(ctx).workspaces(workspace).projects.get();
+  const user = await getClockify(ctx).user.get();
+  const projects = await getClockify(ctx).workspaces(user.activeWorkspace).projects.get();
 
   const state: IFillDayState = {
     stateName: FILL_DAY_STATE.PROJECT_SELECT,
@@ -72,8 +72,6 @@ fillDayScene.on('message', (ctx: MongoSessionContext) => {
 async function selectProjectCallback(ctx: MongoSessionContext) {
   // @ts-ignore
   const projectName: string = ctx.message.text;
-
-  // const projects = await getClockify(ctx).workspaces(getClockifyWorkspace(ctx)).projects.get();
   const project = getFillDayState(ctx).projects.find(item => item.name === projectName);
 
   if (project === undefined) return reenterScene(ctx);
@@ -102,7 +100,6 @@ async function selectProjectCallback(ctx: MongoSessionContext) {
 async function fillProjectCallback(ctx: MongoSessionContext) {
   const hours = parseInt(ctx.message.text);
   const range = createClockifyTimeRange(hours);
-  const workspace = getClockifyWorkspace(ctx);
 
   const request: Partial<CKLTimeEntryPostRequest> = {
     ...range,
@@ -110,7 +107,7 @@ async function fillProjectCallback(ctx: MongoSessionContext) {
     projectId: getFillDayState(ctx).project.id
   };
 
-  await getClockify(ctx).workspaces(workspace).timeEntry.post(request as any);
+  await getClockify(ctx).workspaces(getFillDayState(ctx).project.workspaceId).timeEntry.post(request as any);
 
   await I18nManager.replyWithSticker(ctx, 'SCENE_FILL_DAY_SUCCESS_STICKERS');
   Stage.leave()(ctx);
