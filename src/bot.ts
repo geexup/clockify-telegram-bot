@@ -9,6 +9,7 @@ import { onHelp } from './on-help';
 import { registerMenu } from './menu';
 import { mainMenuButtonSet } from './menu/buttons';
 import { TelegrafMongoSession } from 'telegraf-session-mongodb-fork';
+import { clearSession } from './utils';
 
 const Stage = require('telegraf/stage');
 const SocksAgent = require('socks5-https-client/lib/Agent');

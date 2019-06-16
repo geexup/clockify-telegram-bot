@@ -14,5 +14,7 @@ export function getSession(ctx: any): ISessionData {
 }
 
 export function clearSession(ctx: any): void {
-  ctx.session = {};
+  ctx.session = {
+    state: {}
+  };
 }

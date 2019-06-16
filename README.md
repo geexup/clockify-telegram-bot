@@ -56,5 +56,4 @@ docker run -v <PATH_TO_CONFIG>:/srv/environment/presets/preset.js BOT_CURRENT_PR
 - Add tslint
 - Add tests
 - Add state machine to scenes
-- Add English language
 - Add Google Authenticator for Admin proof

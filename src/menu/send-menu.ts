@@ -11,7 +11,7 @@ export function sendMenu(ctx: ContextMessageUpdate, buttonSet: Array<IMenuItem>)
     .resize()
     .extra()
 
-  ctx.replyWithMarkdown(I18nManager.getString(ctx, 'MENU_MAIN_TITLE_MD'), keyboard);
+  return ctx.replyWithMarkdown(I18nManager.getString(ctx, 'MENU_MAIN_TITLE_MD'), keyboard);
 }
 
 export function sendMainMenu(ctx: ContextMessageUpdate) {

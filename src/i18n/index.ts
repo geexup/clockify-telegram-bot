@@ -4,9 +4,23 @@ import { getSession } from '../utils';
 import { I18n } from './interface';
 import { TLocales, locals } from './locals';
 
-const DEFAULT_LOCALE: TLocales = 'ru';
+const DEFAULT_LOCALE: TLocales = 'en';
 
 export class I18nManager {
+  static getAllLocales(): Array<{ key: TLocales; flag: string; name: string; }> {
+    const result: Array<{ key: TLocales; flag: string; name: string; }> = [];
+
+    for (const key in locals) {
+      result.push({
+        key: key as TLocales,
+        flag: locals[key as TLocales].LOCALE_FLAG,
+        name: locals[key as TLocales].LOCALE_NAME
+      });
+    }
+
+    return result;
+  }
+
   static getLocale(ctx: ContextMessageUpdate): TLocales {
     if (!getSession(ctx).locale) I18nManager.setLocale(ctx, DEFAULT_LOCALE);
 

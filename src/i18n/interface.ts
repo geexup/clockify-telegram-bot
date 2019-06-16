@@ -1,4 +1,9 @@
 export interface I18n {
+  /** Language name */
+  LOCALE_NAME: string;
+  /** Language flag */
+  LOCALE_FLAG: string;
+
   /** User not an admin */
   MIDDLEWARE_ADMIN_DENIED: string;
 
@@ -14,6 +19,8 @@ export interface I18n {
   MENU_MAIN_INFO: string;
   /** (Menu) Main -> Fill Day */
   MENU_MAIN_FILL_DAY: string;
+  /** (Menu) Main -> Settings */
+  MENU_MAIN_SETTINGS: string;
   /** (Menu) Main -> Login */
   MENU_MAIN_LOGIN: string;
   /** (Menu) Main -> Logout */
@@ -64,4 +71,11 @@ export interface I18n {
   SCENE_FILL_DAY_TIME_SELECT: string;
   /** (fill-day) Success stickers */
   SCENE_FILL_DAY_SUCCESS_STICKERS: Array<string>;
+
+  /** (Settings) Select language title text */
+  SCENE_SETTINGS_SELECT_LANGUAGE: string;
+  /** (Settings) Select language inline button */
+  SCENE_SETTINGS_SELECT_LANGUAGE_BTN: string;
+  /** (Settings) message on success language change */
+  SCENE_SETTINGS_SELECT_LANGUAGE_SUCCESS: string;
 }
