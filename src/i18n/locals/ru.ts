@@ -1,5 +1,7 @@
 import { I18n } from '../interface';
 
+// tslint:disable: object-literal-sort-keys
+// tslint:disable-next-line: variable-name
 export const ru_ru: I18n = {
   LOCALE_FLAG: '🇷🇺',
   LOCALE_NAME: 'Русский',

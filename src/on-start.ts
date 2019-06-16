@@ -1,8 +1,8 @@
-import { Middleware, ContextMessageUpdate } from 'telegraf';
-import { clearSession } from './utils';
+import { ContextMessageUpdate, Middleware } from 'telegraf';
 import { I18nManager } from './i18n';
-import { sendMenu } from './menu/send-menu';
 import { mainMenuButtonSet } from './menu/buttons';
+import { sendMenu } from './menu/send-menu';
+import { clearSession } from './utils';
 
 export const onStart: Middleware<ContextMessageUpdate> = async (ctx) => {
   const userName = ctx.from !== undefined ? ctx.from.first_name : '';

@@ -1,7 +1,7 @@
-import { Middleware, ContextMessageUpdate } from 'telegraf';
-import { getSession } from '../utils';
-import { loginedMiddleware } from '../middlewares';
+import { ContextMessageUpdate, Middleware } from 'telegraf';
 import { I18nManager } from '../i18n';
+import { loginedMiddleware } from '../middlewares';
+import { getSession } from '../utils';
 
 export const logoutCmd: Array<Middleware<ContextMessageUpdate>> = [
   loginedMiddleware,

@@ -1,12 +1,12 @@
-import { IMenuItem } from '../interface';
+import { logoutCmd } from '../../commands/logout.command';
 import { isLogined } from '../../utils';
 import { cmdToMenuButtonCb } from '../../utils/cmd-menu-btn';
-import { logoutCmd } from '../../commands/logout.command';
+import { IMenuItem } from '../interface';
 
 export const logoutBtn: IMenuItem = {
   key: '🔒',
-  text: 'MENU_MAIN_LOGOUT',
   rollMenuBack: true,
-  hidden: (ctx) => !isLogined(ctx),
-  ...cmdToMenuButtonCb(logoutCmd)
-}
+  text: 'MENU_MAIN_LOGOUT',
+  ...cmdToMenuButtonCb(logoutCmd),
+  hidden: (ctx) => !isLogined(ctx)
+};

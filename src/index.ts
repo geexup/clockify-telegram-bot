@@ -1,4 +1,4 @@
-import { EnvironmentManager, CURRENT_PRESET_ENV } from './environment';
+import { CURRENT_PRESET_ENV, EnvironmentManager } from './environment';
 
 const DEFAULT_PRESET = 'dev';
 if (!EnvironmentManager.currentName) {

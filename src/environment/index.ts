@@ -1,5 +1,5 @@
-import presets from './presets';
 import { IBotEnvironment } from './environment.interface';
+import presets from './presets';
 
 export const CURRENT_PRESET_ENV = 'BOT_CURRENT_PRESET';
 

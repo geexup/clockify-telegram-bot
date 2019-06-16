@@ -8,13 +8,21 @@
   "scripts": {
     "dev": "nodemon -e .ts,.js --exec node --inspect -r ts-node/register ./src/index.ts",
     "prod": "node ./dist/index.js",
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
   },
   "devDependencies": {
-    "@types/lodash": "4.14.134",
     "@types/moment": "2.13.0",
     "@types/node": "12.0.7",
+    "husky": "2.4.1",
     "ts-node": "8.2.0",
+    "tslint": "5.17.0",
     "typescript": "3.5.1"
   },
   "repository": "https://github.com/geexup/clockify-telegram-bot.git",

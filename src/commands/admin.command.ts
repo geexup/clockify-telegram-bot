@@ -1,7 +1,7 @@
 import crypto from 'crypto';
-import { getSession, getArguments } from '../utils';
-import { Middleware, ContextMessageUpdate } from 'telegraf';
+import { ContextMessageUpdate, Middleware } from 'telegraf';
 import { I18nManager } from '../i18n';
+import { getArguments, getSession } from '../utils';
 
 let lastSecretPhrase: string;
 

@@ -2,14 +2,13 @@ import { EnvironmentManager } from './environment';
 import { sendBuhatSticker } from './utils/send-buhat-sticker';
 
 import Telegraf from 'telegraf';
-import { registerScenes } from './scenes';
+import { TelegrafMongoSession } from 'telegraf-session-mongodb-fork';
 import { registerCommands } from './commands';
-import { onStart } from './on-start';
-import { onHelp } from './on-help';
 import { registerMenu } from './menu';
 import { mainMenuButtonSet } from './menu/buttons';
-import { TelegrafMongoSession } from 'telegraf-session-mongodb-fork';
-import { clearSession } from './utils';
+import { onHelp } from './on-help';
+import { onStart } from './on-start';
+import { registerScenes } from './scenes';
 
 const Stage = require('telegraf/stage');
 const SocksAgent = require('socks5-https-client/lib/Agent');
@@ -32,7 +31,7 @@ bot.on('sticker', (ctx) => {
 
 // Life-cycle
 bot.start(onStart);
-bot.help(onHelp)
+bot.help(onHelp);
 bot.hears(/бухать/i, sendBuhatSticker);
 
 // Scenes

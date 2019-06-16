@@ -1,5 +1,5 @@
-import { I18n } from '../i18n/interface';
 import { ContextMessageUpdate, Middleware } from 'telegraf';
+import { I18n } from '../i18n/interface';
 
 export interface IMenuItem {
   key: string;

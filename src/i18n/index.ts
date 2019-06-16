@@ -2,7 +2,7 @@ import handlebars from 'handlebars';
 import { ContextMessageUpdate } from 'telegraf';
 import { getSession } from '../utils';
 import { I18n } from './interface';
-import { TLocales, locals } from './locals';
+import { locals, TLocales } from './locals';
 
 const DEFAULT_LOCALE: TLocales = 'en';
 
@@ -12,8 +12,8 @@ export class I18nManager {
 
     for (const key in locals) {
       result.push({
-        key: key as TLocales,
         flag: locals[key as TLocales].LOCALE_FLAG,
+        key: key as TLocales,
         name: locals[key as TLocales].LOCALE_NAME
       });
     }
@@ -48,7 +48,7 @@ export class I18nManager {
     const result = locale[key];
 
     // Special sticker case, when string can be array (the result will be a random string from this array)
-    if (Array.isArray(result)) return result[Math.floor(Math.random()* result.length)];
+    if (Array.isArray(result)) return result[Math.floor(Math.random() * result.length)];
     return result;
   }
 

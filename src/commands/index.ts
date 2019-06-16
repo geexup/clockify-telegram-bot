@@ -1,6 +1,7 @@
 import Telegraf, { ContextMessageUpdate, Middleware } from 'telegraf';
-import { dumpCmd } from './dump.command';
+
 import { adminCmd } from './admin.command';
+import { dumpCmd } from './dump.command';
 import { infoCmd } from './info.command';
 import { loginCmd } from './login.command';
 import { logoutCmd } from './logout.command';
@@ -28,15 +29,12 @@ function registerCommand(
   isPrivate: boolean,
   cmd: Array<Middleware<ContextMessageUpdate>>
 ) {
-  if (!isPrivate) commandsDescription.push({
-    name,
-    description
-  });
+  if (!isPrivate) commandsDescription.push({ name, description });
 
   const [first, ...rest] = cmd;
   bot.command(name, first, ...rest);
 }
 
 export function createCommandList(): string {
-  return commandsDescription.map(item => `${item.name} - ${item.description}`).join('\n');
+  return commandsDescription.map((item) => `${item.name} - ${item.description}`).join('\n');
 }

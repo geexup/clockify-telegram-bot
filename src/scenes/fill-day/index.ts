@@ -1,17 +1,17 @@
+import { CKLTimeEntryPostRequest } from 'clockify-api/dist/api/workspaces/time-entry';
 import { ContextMessageUpdate, Markup } from 'telegraf';
-import { getClockifyWorkspace } from '../../utils/get-clockify-workspace';
-import { getClockify } from '../../utils/get-clockify';
-import { sendMainMenu } from '../../menu/send-menu';
-import { I18nManager } from '../../i18n';
-import { getSession } from '../../utils';
 import { MongoSessionContext } from 'telegraf-session-mongodb-fork';
-import { getFillDayState } from './helpers/get-state';
-import { FILL_DAY_STATE, IFillDayState } from './helpers/states';
+import { I18nManager } from '../../i18n';
+import { sendMainMenu } from '../../menu/send-menu';
+import { getSession } from '../../utils';
 import { blockLeaveMiddleware } from '../../utils/block-leave';
+import { getClockify } from '../../utils/get-clockify';
+import { getClockifyWorkspace } from '../../utils/get-clockify-workspace';
+import { leaveScene } from '../../utils/leave-scene';
 import { reenterScene } from '../../utils/reenter-scene';
 import { createClockifyTimeRange } from './helpers/create-clockify-time-range';
-import { CKLTimeEntryPostRequest } from 'clockify-api/dist/api/workspaces/time-entry';
-import { leaveScene } from '../../utils/leave-scene';
+import { getFillDayState } from './helpers/get-state';
+import { FILL_DAY_STATE, IFillDayState } from './helpers/states';
 
 const Stage = require('telegraf/stage');
 const Scene = require('telegraf/scenes/base');
@@ -36,8 +36,8 @@ fillDayScene.enter(async (ctx: MongoSessionContext) => {
   const projects = await getClockify(ctx).workspaces(user.activeWorkspace).projects.get();
 
   const state: IFillDayState = {
-    stateName: FILL_DAY_STATE.PROJECT_SELECT,
-    projects
+    projects,
+    stateName: FILL_DAY_STATE.PROJECT_SELECT
   };
 
   getSession(ctx).state = state;
@@ -46,7 +46,7 @@ fillDayScene.enter(async (ctx: MongoSessionContext) => {
   await ctx.reply(
     I18nManager.getString(ctx, 'SCENE_FILL_DAY_WELCOME'),
     Markup.keyboard([
-      ...projects.map(item => item.name),
+      ...projects.map((item) => item.name),
       '↩️ ' + I18nManager.getString(ctx, 'MENU_BACK')
     ], { columns: projects.length >= 2 ? 3 : 2 })
       // @ts-ignore
@@ -68,17 +68,16 @@ fillDayScene.on('message', (ctx: MongoSessionContext) => {
   reenterScene(ctx);
 });
 
-
 async function selectProjectCallback(ctx: MongoSessionContext) {
   // @ts-ignore
   const projectName: string = ctx.message.text;
-  const project = getFillDayState(ctx).projects.find(item => item.name === projectName);
+  const project = getFillDayState(ctx).projects.find((item) => item.name === projectName);
 
   if (project === undefined) return reenterScene(ctx);
 
   const nextState: Partial<IFillDayState> = {
-    stateName: FILL_DAY_STATE.HOURS_SELECT,
-    project
+    project,
+    stateName: FILL_DAY_STATE.HOURS_SELECT
   };
 
   getSession(ctx).state = nextState;
@@ -98,7 +97,7 @@ async function selectProjectCallback(ctx: MongoSessionContext) {
 }
 
 async function fillProjectCallback(ctx: MongoSessionContext) {
-  const hours = parseInt(ctx.message.text);
+  const hours = parseInt(ctx.message.text, 10);
   const range = createClockifyTimeRange(hours);
 
   const request: Partial<CKLTimeEntryPostRequest> = {

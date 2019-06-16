@@ -1,3 +1,4 @@
+// tslint:disable-next-line: interface-name
 export interface I18n {
   /** Language name */
   LOCALE_NAME: string;

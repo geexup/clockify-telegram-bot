@@ -1,10 +1,10 @@
-import { ContextMessageUpdate } from 'telegraf';
 import { ClockifyApi } from 'clockify-api';
-import { getSession } from '../utils';
+import { ContextMessageUpdate } from 'telegraf';
+import { MongoSessionContext } from 'telegraf-session-mongodb-fork';
 import { bot } from '../bot';
 import { I18nManager } from '../i18n';
 import { sendMainMenu } from '../menu/send-menu';
-import { MongoSessionContext } from 'telegraf-session-mongodb-fork';
+import { getSession } from '../utils';
 import { leaveScene } from '../utils/leave-scene';
 
 const Stage = require('telegraf/stage');
