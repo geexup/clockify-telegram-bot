@@ -1,8 +1,10 @@
 # Clockify Telegram Bot
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/geexup/clockify-telegram-bot.svg)
+
 Telegram bot for better & faster interaction with Clockify Timetable
 
 ## Try deployed version
-Just search in Telegram Messenger for @clockify-bot
+Just search in Telegram Messenger for @clockify_bot
 
 ## Install
 1. Clone this repository:
@@ -22,7 +24,7 @@ $: yarn
 3. Get [mongoDB](https://www.mongodb.com/) up and running
 
 ## Run
-1. Go to Bot Father (@@BotFather) in Telegram and get your bot token
+1. Go to Bot Father (@BotFather) in Telegram and get your bot token
 2. Paste token into `BOT_TOKEN` in `src/environment/presets/dev.ts`
 3. Run bot:
 ```
