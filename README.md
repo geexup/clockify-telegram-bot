@@ -1,8 +1,10 @@
 # Clockify Telegram Bot
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/geexup/clockify-telegram-bot.svg)
+
 Telegram bot for better & faster interaction with Clockify Timetable
 
 ## Try deployed version
-Just search in Telegram Messenger for @clockify-bot
+Just search in Telegram Messenger for @clockify_bot
 
 ## Install
 1. Clone this repository:
