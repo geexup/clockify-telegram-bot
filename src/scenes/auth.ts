@@ -4,6 +4,8 @@ import { getSession } from '../utils';
 import { bot } from '../bot';
 import { I18nManager } from '../i18n';
 import { sendMainMenu } from '../menu/send-menu';
+import { MongoSessionContext } from 'telegraf-session-mongodb-fork';
+import { leaveScene } from '../utils/leave-scene';
 
 const Stage = require('telegraf/stage');
 const Scene = require('telegraf/scenes/base');
@@ -13,9 +15,9 @@ authScene.enter((ctx: ContextMessageUpdate) => I18nManager.replyWithMarkdown(ctx
 authScene.leave((ctx: ContextMessageUpdate) => sendMainMenu(ctx));
 
 // TODO: make menu button to cancel
-authScene.command('cancel', Stage.leave());
+authScene.command('cancel', leaveScene);
 
-authScene.on('message', async (ctx: ContextMessageUpdate) => {
+authScene.on('message', async (ctx: MongoSessionContext) => {
   const chatId = ctx.chat !== undefined ? ctx.chat.id : '';
 
   // Дружко - "Чтож проверим"
@@ -35,7 +37,7 @@ authScene.on('message', async (ctx: ContextMessageUpdate) => {
       await bot.telegram.deleteMessage(chatId, waitMessage.message_id);
       await I18nManager.replyWithSticker(ctx, 'SCENE_AUTH_CHECK_APPROVED_STICKER');
       await I18nManager.reply(ctx, 'SCENE_AUTH_CHECK_APPROVED', { user });
-      Stage.leave()(ctx);
+      await leaveScene(ctx);
     }
   } catch (error) {
     await bot.telegram.deleteMessage(chatId, waitMessage.message_id);

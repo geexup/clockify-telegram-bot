@@ -6,6 +6,7 @@ import { selectActionMiddleware } from './states';
 import { languageButton } from './language';
 import { clearState } from './clear-state';
 import { blockLeaveMiddleware } from '../../utils/block-leave';
+import { leaveScene } from '../../utils/leave-scene';
 
 const Stage = require('telegraf/stage');
 const Scene = require('telegraf/scenes/base');
@@ -16,7 +17,7 @@ const settingsButtons: Array<IMenuItem> = [
     key: '↩️',
     text: 'MENU_BACK',
     middlewares: [],
-    callback(ctx) { Stage.leave()(ctx); }
+    callback: leaveScene
   }
 ];
 
@@ -28,6 +29,6 @@ settingsScene.enter(async (ctx: ContextMessageUpdate) => {
 });
 
 settingsScene.leave(blockLeaveMiddleware, sendMainMenu);
-settingsScene.hears(/↩️/i, Stage.leave());
+settingsScene.hears(/↩️/i, leaveScene);
 settingsScene.use(selectActionMiddleware);
 registerMenu(settingsScene, settingsButtons);

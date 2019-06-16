@@ -4,7 +4,7 @@ import { getSession } from '../utils';
 import { I18n } from './interface';
 import { TLocales, locals } from './locals';
 
-const DEFAULT_LOCALE: TLocales = 'ru';
+const DEFAULT_LOCALE: TLocales = 'en';
 
 export class I18nManager {
   static getAllLocales(): Array<{ key: TLocales; flag: string; name: string; }> {

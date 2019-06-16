@@ -11,6 +11,7 @@ import { blockLeaveMiddleware } from '../../utils/block-leave';
 import { reenterScene } from '../../utils/reenter-scene';
 import { createClockifyTimeRange } from './helpers/create-clockify-time-range';
 import { CKLTimeEntryPostRequest } from 'clockify-api/dist/api/workspaces/time-entry';
+import { leaveScene } from '../../utils/leave-scene';
 
 const Stage = require('telegraf/stage');
 const Scene = require('telegraf/scenes/base');
@@ -22,10 +23,10 @@ fillDayScene.hears(/↩️/i, (ctx: ContextMessageUpdate) => {
   const state = getFillDayState(ctx);
 
   if (state === null) {
-    return Stage.leave()(ctx)
+    return leaveScene(ctx as any);
   }
 
-  if (state.stateName === FILL_DAY_STATE.PROJECT_SELECT) { return Stage.leave()(ctx) }
+  if (state.stateName === FILL_DAY_STATE.PROJECT_SELECT) { return leaveScene(ctx as any); }
   if (state.stateName === FILL_DAY_STATE.HOURS_SELECT) return reenterScene(ctx);
 });
 
@@ -109,5 +110,5 @@ async function fillProjectCallback(ctx: MongoSessionContext) {
   await getClockify(ctx).workspaces(getFillDayState(ctx).project.workspaceId).timeEntry.post(request as any);
 
   await I18nManager.replyWithSticker(ctx, 'SCENE_FILL_DAY_SUCCESS_STICKERS');
-  Stage.leave()(ctx);
+  await leaveScene(ctx);
 }
