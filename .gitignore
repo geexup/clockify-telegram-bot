@@ -3,3 +3,5 @@ yarn.lock
 /old/
 src/environment/presets/private\.ts
 dist/
+
+\.DS_Store

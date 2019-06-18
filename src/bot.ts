@@ -9,12 +9,13 @@ import { mainMenuButtonSet } from './menu/buttons';
 import { onHelp } from './on-help';
 import { onStart } from './on-start';
 import { registerScenes } from './scenes';
+import { getProxyAgent } from './proxy';
 
 const Stage = require('telegraf/stage');
-const SocksAgent = require('socks5-https-client/lib/Agent');
 
-const socksAgent = EnvironmentManager.current.PROXY ? new SocksAgent(EnvironmentManager.current.PROXY) : undefined;
-export const bot = new Telegraf(EnvironmentManager.current.BOT_TOKEN, { telegram: { agent: socksAgent }});
+export const bot = new Telegraf(EnvironmentManager.current.BOT_TOKEN, {
+  telegram: { agent: getProxyAgent(EnvironmentManager.current.PROXY) }
+});
 
 // Mongo session
 TelegrafMongoSession.setup(bot, EnvironmentManager.current.MONGODB_URI);
