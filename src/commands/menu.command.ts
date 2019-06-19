@@ -1,5 +1,5 @@
-import { Middleware, ContextMessageUpdate } from 'telegraf';
-import { sendMenu, sendMainMenu } from '../menu/send-menu';
+import { ContextMessageUpdate, Middleware } from 'telegraf';
+import { sendMainMenu } from '../menu/send-menu';
 
 export const menuCmd: Array<Middleware<ContextMessageUpdate>> = [
   async (ctx) => {

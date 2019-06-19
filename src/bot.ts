@@ -2,20 +2,20 @@ import { EnvironmentManager } from './environment';
 import { sendBuhatSticker } from './utils/send-buhat-sticker';
 
 import Telegraf from 'telegraf';
-import { registerScenes } from './scenes';
+import { TelegrafMongoSession } from 'telegraf-session-mongodb-fork';
 import { registerCommands } from './commands';
-import { onStart } from './on-start';
-import { onHelp } from './on-help';
 import { registerMenu } from './menu';
 import { mainMenuButtonSet } from './menu/buttons';
-import { TelegrafMongoSession } from 'telegraf-session-mongodb-fork';
-import { clearSession } from './utils';
+import { onHelp } from './on-help';
+import { onStart } from './on-start';
+import { getProxyAgent } from './proxy';
+import { registerScenes } from './scenes';
 
 const Stage = require('telegraf/stage');
-const SocksAgent = require('socks5-https-client/lib/Agent');
 
-const socksAgent = EnvironmentManager.current.PROXY ? new SocksAgent(EnvironmentManager.current.PROXY) : undefined;
-export const bot = new Telegraf(EnvironmentManager.current.BOT_TOKEN, { telegram: { agent: socksAgent }});
+export const bot = new Telegraf(EnvironmentManager.current.BOT_TOKEN, {
+  telegram: { agent: getProxyAgent(EnvironmentManager.current.PROXY) }
+});
 
 // Mongo session
 TelegrafMongoSession.setup(bot, EnvironmentManager.current.MONGODB_URI);
@@ -32,7 +32,7 @@ bot.on('sticker', (ctx) => {
 
 // Life-cycle
 bot.start(onStart);
-bot.help(onHelp)
+bot.help(onHelp);
 bot.hears(/бухать/i, sendBuhatSticker);
 
 // Scenes

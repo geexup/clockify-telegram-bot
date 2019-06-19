@@ -1,15 +1,15 @@
 import { ContextMessageUpdate, Markup } from 'telegraf';
-import { buildButtons } from './build-buttons';
 import { I18nManager } from '../i18n';
-import { IMenuItem } from './interface';
+import { buildButtons } from './build-buttons';
 import { mainMenuButtonSet } from './buttons';
+import { IMenuItem } from './interface';
 
 export function sendMenu(ctx: ContextMessageUpdate, buttonSet: Array<IMenuItem>) {
   const keyboard = Markup
     .keyboard(buildButtons(ctx, buttonSet))
     // @ts-ignore
     .resize()
-    .extra()
+    .extra();
 
   return ctx.replyWithMarkdown(I18nManager.getString(ctx, 'MENU_MAIN_TITLE_MD'), keyboard);
 }

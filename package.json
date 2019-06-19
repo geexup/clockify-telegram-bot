@@ -1,6 +1,6 @@
 {
   "name": "clockify-telegram-bot",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Telegram bot for clockify",
   "author": "Lex Yudin @geexup",
   "license": "MIT",
@@ -8,20 +8,34 @@
   "scripts": {
     "dev": "nodemon -e .ts,.js --exec node --inspect -r ts-node/register ./src/index.ts",
     "prod": "node ./dist/index.js",
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
   },
   "devDependencies": {
-    "@types/lodash": "4.14.134",
-    "@types/moment": "2.13.0",
     "@types/node": "12.0.7",
+    "@types/puppeteer": "1.12.4",
+    "husky": "2.4.1",
     "ts-node": "8.2.0",
+    "tslint": "5.17.0",
     "typescript": "3.5.1"
   },
   "repository": "https://github.com/geexup/clockify-telegram-bot.git",
   "dependencies": {
     "clockify-api": "1.0.2",
     "handlebars": "4.1.2",
+    "http-proxy-agent": "2.1.0",
+    "https-proxy-agent": "2.2.1",
     "moment": "2.24.0",
+    "pac-proxy-agent": "3.0.0",
+    "proxy-agent": "3.1.0",
+    "puppeteer": "1.17.0",
+    "socks-proxy-agent": "4.0.2",
     "socks5-https-client": "1.2.1",
     "telegraf": "3.30.1",
     "telegraf-session-mongodb-fork": "1.2.0"

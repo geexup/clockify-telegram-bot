@@ -1,24 +1,20 @@
 import { ContextMessageUpdate } from 'telegraf';
-import { sendMainMenu, sendMenu } from '../../menu/send-menu';
-import { IMenuItem } from '../../menu/interface';
+import { MongoSessionContext } from 'telegraf-session-mongodb-fork';
 import { registerMenu } from '../../menu';
-import { selectActionMiddleware } from './states';
-import { languageButton } from './language';
-import { clearState } from './clear-state';
+import { backButton } from '../../menu/buttons';
+import { IMenuItem } from '../../menu/interface';
+import { sendMainMenu, sendMenu } from '../../menu/send-menu';
 import { blockLeaveMiddleware } from '../../utils/block-leave';
 import { leaveScene } from '../../utils/leave-scene';
+import { clearState } from './clear-state';
+import { languageButton } from './language';
+import { selectActionMiddleware } from './states';
 
-const Stage = require('telegraf/stage');
 const Scene = require('telegraf/scenes/base');
 
 const settingsButtons: Array<IMenuItem> = [
   languageButton,
-  {
-    key: '↩️',
-    text: 'MENU_BACK',
-    middlewares: [],
-    callback: leaveScene
-  }
+  backButton
 ];
 
 export const settingsScene = new Scene('settings');

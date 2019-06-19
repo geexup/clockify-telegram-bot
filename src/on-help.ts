@@ -1,4 +1,4 @@
-import { Middleware, ContextMessageUpdate } from 'telegraf';
+import { ContextMessageUpdate, Middleware } from 'telegraf';
 import { createCommandList } from './commands';
 
 export const onHelp: Middleware<ContextMessageUpdate> = (ctx) => {

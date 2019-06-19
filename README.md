@@ -44,12 +44,15 @@ $: docker build -t <IMAGE_TAG_NAME> .
 
 Simple run:
 ```
-docker run --name clockify-bot geexup/clockify-telegram-bot
+docker run --cap-add=SYS_ADMIN --name clockify-bot geexup/clockify-telegram-bot
 ```
 
 You can pass into container your own environment preset with bot token and mongoDB address as well:
 ```
-docker run -v <PATH_TO_CONFIG>:/srv/environment/presets/preset.js BOT_CURRENT_PRESET=<PRESET_NAME> geexup/clockify-telegram-bot
+docker run -it --cap-add=SYS_ADMIN \
+  -v <PATH_TO_CONFIG>:/srv/environment/presets/preset.js \
+  -e BOT_CURRENT_PRESET=<PRESET_NAME> \
+  geexup/clockify-telegram-bot
 ```
 
 ## TODO

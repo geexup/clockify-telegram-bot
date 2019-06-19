@@ -1,7 +1,7 @@
-import { Middleware, ContextMessageUpdate } from 'telegraf';
-import { getSession } from '../utils';
-import { adminMiddleware } from '../middlewares';
+import { ContextMessageUpdate, Middleware } from 'telegraf';
 import { I18nManager } from '../i18n';
+import { adminMiddleware } from '../middlewares';
+import { getSession } from '../utils';
 
 export const dumpCmd: Array<Middleware<ContextMessageUpdate>> = [
   adminMiddleware,

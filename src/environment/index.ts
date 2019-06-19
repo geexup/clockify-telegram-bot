@@ -1,5 +1,5 @@
-import presets from './presets';
 import { IBotEnvironment } from './environment.interface';
+import presets from './presets';
 
 export const CURRENT_PRESET_ENV = 'BOT_CURRENT_PRESET';
 
@@ -23,7 +23,10 @@ export class EnvironmentManager {
     const name = EnvironmentManager.currentName;
     if (!name) throw new Error('Current preset not set');
 
-    return EnvironmentManager.getByName(name);
+    const env = EnvironmentManager.getByName(name);
+    process.env.NODE_ENV = env.NODE_ENV;
+
+    return env;
   }
 
   static setCurrent(name: string): void {

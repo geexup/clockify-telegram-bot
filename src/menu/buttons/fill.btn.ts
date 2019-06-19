@@ -1,16 +1,14 @@
-import { IMenuItem } from '../interface';
-import { isLogined } from '../../utils';
-import { cmdToMenuButtonCb } from '../../utils/cmd-menu-btn';
-import { infoCmd } from '../../commands/info.command';
 import { loginedMiddleware } from '../../middlewares';
+import { isLogined } from '../../utils';
+import { IMenuItem } from '../interface';
 
 export const fillBtn: IMenuItem = {
-  key: '📝',
-  text: 'MENU_MAIN_FILL_DAY',
   hidden: (ctx) => !isLogined(ctx),
+  key: '📝',
   middlewares: [loginedMiddleware],
+  text: 'MENU_MAIN_FILL_DAY',
   callback(ctx) {
     // @ts-ignore
-    ctx.scene.enter('fill-day')
+    ctx.scene.enter('fill-day');
   }
-}
+};

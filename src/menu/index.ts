@@ -1,9 +1,9 @@
-import { Telegraf, ContextMessageUpdate } from 'telegraf';
-import { sendMenu, sendMainMenu } from './send-menu';
+import { ContextMessageUpdate, Telegraf } from 'telegraf';
 import { IMenuItem } from './interface';
+import { sendMainMenu } from './send-menu';
 
 export function registerMenu(bot: Telegraf<ContextMessageUpdate>, buttonSet: Array<IMenuItem>) {
-  buttonSet.forEach(item => {
+  buttonSet.forEach((item) => {
     const callbacks = [...item.middlewares];
 
     if (item.rollMenuBack) {

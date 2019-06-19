@@ -1,10 +1,10 @@
-import { basename } from 'path';
 import { readdirSync } from 'fs';
+import { basename } from 'path';
 import { IBotEnvironment } from '../environment.interface';
 
 const presets: { [presetName: string]: IBotEnvironment } = {};
 const fileNames = readdirSync(__dirname).filter(
-  item =>
+  (item) =>
     item !== basename(__filename)
     && (item.includes('.ts') || item.includes('.js'))
 );

@@ -8,7 +8,7 @@ export async function blockLeaveMiddleware(ctx: ContextMessageUpdate, next: Func
     return;
   }
 
-  await next()
+  await next();
 }
 
 export function makeLeaveBloked(ctx: any): void {
