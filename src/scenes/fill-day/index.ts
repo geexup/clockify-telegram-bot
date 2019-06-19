@@ -6,11 +6,11 @@ import { sendMainMenu } from '../../menu/send-menu';
 import { getSession } from '../../utils';
 import { blockLeaveMiddleware } from '../../utils/block-leave';
 import { getClockify } from '../../utils/get-clockify';
-import { getClockifyWorkspace } from '../../utils/get-clockify-workspace';
 import { leaveScene } from '../../utils/leave-scene';
 import { reenterScene } from '../../utils/reenter-scene';
 import { createClockifyTimeRange } from './helpers/create-clockify-time-range';
 import { getFillDayState } from './helpers/get-state';
+import { sendProjectsMenu } from './helpers/send-projects-menu';
 import { FILL_DAY_STATE, IFillDayState } from './helpers/states';
 
 const Stage = require('telegraf/stage');
@@ -30,38 +30,31 @@ fillDayScene.hears(/↩️/i, (ctx: ContextMessageUpdate) => {
 
 fillDayScene.leave(blockLeaveMiddleware, sendMainMenu);
 fillDayScene.enter(async (ctx: MongoSessionContext) => {
-  const user = await getClockify(ctx).user.get();
-  const projects = await getClockify(ctx).workspaces(user.activeWorkspace).projects.get();
-
-  const state: IFillDayState = {
-    projects,
-    stateName: FILL_DAY_STATE.PROJECT_SELECT
-  };
-
+  const state: IFillDayState = { page: 1, projects: [], stateName: FILL_DAY_STATE.PROJECT_SELECT };
   getSession(ctx).state = state;
+  await sendProjectsMenu(ctx);
   await ctx.saveSession();
-
-  await ctx.reply(
-    I18nManager.getString(ctx, 'SCENE_FILL_DAY_WELCOME'),
-    Markup.keyboard([
-      ...projects.map((item) => item.name),
-      '↩️ ' + I18nManager.getString(ctx, 'MENU_BACK')
-    ], { columns: projects.length >= 2 ? 3 : 2 })
-      // @ts-ignore
-      .resize()
-      .extra()
-  );
 });
 
-fillDayScene.on('message', (ctx: MongoSessionContext) => {
+fillDayScene.on('message', async (ctx: MongoSessionContext) => {
   if (ctx.message === undefined) return;
   if (ctx.message.text && ctx.message.text.includes('↩️')) return;
+
+  if (ctx.message.text && (ctx.message.text.includes('◀️') || ctx.message.text.includes('▶️'))) {
+    const stateData: IFillDayState = getSession(ctx).state;
+    stateData.page += ctx.message.text.includes('◀️') ? -1 : 1;
+
+    await ctx.saveSession();
+    await sendProjectsMenu(ctx);
+
+    return;
+  }
 
   const state = getFillDayState(ctx);
 
   const stateName = state ? state.stateName : FILL_DAY_STATE.PROJECT_SELECT;
-  if (stateName === FILL_DAY_STATE.PROJECT_SELECT) return selectProjectCallback(ctx);
-  if (stateName === FILL_DAY_STATE.HOURS_SELECT) return fillProjectCallback(ctx);
+  if (stateName === FILL_DAY_STATE.PROJECT_SELECT) return await selectProjectCallback(ctx);
+  if (stateName === FILL_DAY_STATE.HOURS_SELECT) return await fillProjectCallback(ctx);
 
   reenterScene(ctx);
 });
