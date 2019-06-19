@@ -56,7 +56,6 @@ docker run -it --cap-add=SYS_ADMIN \
 ```
 
 ## TODO
-- Add tslint
 - Add tests
 - Add state machine to scenes
 - Add Google Authenticator for Admin proof
