@@ -22,9 +22,7 @@ export const fillDayScene = new Scene('fill-day');
 fillDayScene.hears(/↩️/i, (ctx: ContextMessageUpdate) => {
   const state = getFillDayState(ctx);
 
-  if (state === null) {
-    return leaveScene(ctx as any);
-  }
+  if (state === null) return leaveScene(ctx as any);
 
   if (state.stateName === FILL_DAY_STATE.PROJECT_SELECT) { return leaveScene(ctx as any); }
   if (state.stateName === FILL_DAY_STATE.HOURS_SELECT) return reenterScene(ctx);
@@ -102,6 +100,7 @@ async function fillProjectCallback(ctx: MongoSessionContext) {
 
   const request: Partial<CKLTimeEntryPostRequest> = {
     ...range,
+    billable: getFillDayState(ctx).project.billable,
     description: '',
     projectId: getFillDayState(ctx).project.id
   };

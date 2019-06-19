@@ -26,6 +26,8 @@ export interface I18n {
   MENU_MAIN_LOGIN: string;
   /** (Menu) Main -> Logout */
   MENU_MAIN_LOGOUT: string;
+  /** (Menu) Main -> Reports */
+  MENU_MAIN_REPORTS: string;
 
   /** (Menu) <- Back */
   MENU_BACK: string;
@@ -79,4 +81,18 @@ export interface I18n {
   SCENE_SETTINGS_SELECT_LANGUAGE_BTN: string;
   /** (Settings) message on success language change */
   SCENE_SETTINGS_SELECT_LANGUAGE_SUCCESS: string;
+
+  /** (Reports) Week report button */
+  SCENE_REPORTS_MENU_WEEK: string;
+  /** (Reports) Projects title */
+  SCENE_REPORTS_MENU_WEEK_PROJECTS: string;
+
+  /** Days of the week */
+  SCENE_REPORTS_MONDAY: string;
+  SCENE_REPORTS_TUESDAY: string;
+  SCENE_REPORTS_WEDNESDAY: string;
+  SCENE_REPORTS_THURSDAY: string;
+  SCENE_REPORTS_FRIDAY: string;
+  SCENE_REPORTS_SATURDAY: string;
+  SCENE_REPORTS_SUNDAY: string;
 }

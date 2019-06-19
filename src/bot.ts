@@ -8,8 +8,8 @@ import { registerMenu } from './menu';
 import { mainMenuButtonSet } from './menu/buttons';
 import { onHelp } from './on-help';
 import { onStart } from './on-start';
-import { registerScenes } from './scenes';
 import { getProxyAgent } from './proxy';
+import { registerScenes } from './scenes';
 
 const Stage = require('telegraf/stage');
 

@@ -21,6 +21,7 @@ export const ru_ru: I18n = {
   MENU_MAIN_SETTINGS: 'Настройки',
   MENU_MAIN_LOGIN: 'Войти в Clockify',
   MENU_MAIN_LOGOUT: 'Выход',
+  MENU_MAIN_REPORTS: 'Отчеты',
 
   CMD_ADMIN_PROF:
     'Если ты и правда Админ, докажи это:\n' +
@@ -70,5 +71,16 @@ export const ru_ru: I18n = {
 
   SCENE_SETTINGS_SELECT_LANGUAGE_BTN: 'Выбрать язык',
   SCENE_SETTINGS_SELECT_LANGUAGE: 'Выберете язык:',
-  SCENE_SETTINGS_SELECT_LANGUAGE_SUCCESS: 'Язык успешно сменен!'
+  SCENE_SETTINGS_SELECT_LANGUAGE_SUCCESS: 'Язык успешно сменен!',
+
+  SCENE_REPORTS_MENU_WEEK: 'Отчет за неделю',
+  SCENE_REPORTS_MENU_WEEK_PROJECTS: 'Проекты',
+
+  SCENE_REPORTS_MONDAY: 'Понедельник',
+  SCENE_REPORTS_TUESDAY: 'Вторник',
+  SCENE_REPORTS_WEDNESDAY: 'Среда',
+  SCENE_REPORTS_THURSDAY: 'Четверг',
+  SCENE_REPORTS_FRIDAY: 'Пятница',
+  SCENE_REPORTS_SATURDAY: 'Суббота',
+  SCENE_REPORTS_SUNDAY: 'Воскресенье'
 };

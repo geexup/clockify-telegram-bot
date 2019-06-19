@@ -2,6 +2,9 @@ export interface IBotEnvironment {
   BOT_TOKEN: string;
   MONGODB_URI: string;
 
+  // Will be set to process.env.NODE_ENV
+  NODE_ENV: 'development' | 'production';
+
   /**
    * Proxy URL
    *

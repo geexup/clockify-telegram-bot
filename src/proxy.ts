@@ -1,5 +1,5 @@
-import { IBotEnvironment } from './environment/environment.interface';
 import ProxyAgent from 'proxy-agent';
+import { IBotEnvironment } from './environment/environment.interface';
 
 const SocksAgent = require('socks5-https-client/lib/Agent');
 const HttpsProxyAgent = require('https-proxy-agent');

@@ -1,5 +1,7 @@
 import { ContextMessageUpdate } from 'telegraf';
+import { MongoSessionContext } from 'telegraf-session-mongodb-fork';
 import { registerMenu } from '../../menu';
+import { backButton } from '../../menu/buttons';
 import { IMenuItem } from '../../menu/interface';
 import { sendMainMenu, sendMenu } from '../../menu/send-menu';
 import { blockLeaveMiddleware } from '../../utils/block-leave';
@@ -12,12 +14,7 @@ const Scene = require('telegraf/scenes/base');
 
 const settingsButtons: Array<IMenuItem> = [
   languageButton,
-  {
-    callback: leaveScene,
-    key: '↩️',
-    middlewares: [],
-    text: 'MENU_BACK'
-  }
+  backButton
 ];
 
 export const settingsScene = new Scene('settings');
