@@ -1,19 +1,19 @@
-import { CKLTimeEntryImpl } from 'clockify-api/dist/interfaces/time-entry.interface';
+import { CKLWebTimeEntryInRange } from 'clockify-api/dist/interfaces/time-entry.interface';
 import moment from 'moment';
 import { CLOCKIFY_DATE_FORMAT } from '../../fill-day/helpers/create-clockify-time-range';
 
 export function filterWeek() {
   const maxDay = moment().utc().set('weekday', 7).get('D');
   const minDay = moment().utc().set('weekday', 1).get('D');
-  return (item: CKLTimeEntryImpl): boolean =>
+  return (item: CKLWebTimeEntryInRange): boolean =>
     moment.utc(item.timeInterval.start).get('D') <= maxDay
     && moment.utc(item.timeInterval.start).get('D') >= minDay;
 }
 
 export function weekRange() {
-  const makeDay = () => moment().utc().set('minute', 0).set('seconds', 0).set('millisecond', 0);
-  const startMoment = makeDay().set('weekday', 0);
-  const endMoment = makeDay().set('weekday', 9);
+  const makeDay = () => moment().utc().set('hours', 0).set('minute', 0).set('seconds', 0).set('millisecond', 0);
+  const startMoment = makeDay().set('weekday', 1);
+  const endMoment = makeDay().set('weekday', 8).subtract('seconds', 1);
 
   return {
     end: endMoment.format(CLOCKIFY_DATE_FORMAT),
