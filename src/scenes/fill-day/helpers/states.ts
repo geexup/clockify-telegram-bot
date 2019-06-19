@@ -8,5 +8,6 @@ export enum FILL_DAY_STATE {
 export interface IFillDayState {
   stateName: FILL_DAY_STATE;
   projects: Array<CKLProject>;
+  page: number;
   project?: CKLProject;
 }
