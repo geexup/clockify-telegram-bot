@@ -1,5 +1,6 @@
 # Clockify Telegram Bot
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/geexup/clockify-telegram-bot.svg)
+[![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/geexup/clockify-telegram-bot.svg)](https://hub.docker.com/r/geexup/clockify-telegram-bot)
+[![Docker Image Size](https://images.microbadger.com/badges/image/geexup/clockify-telegram-bot.svg)](https://hub.docker.com/r/geexup/clockify-telegram-bot)
 
 Telegram bot for better & faster interaction with Clockify Timetable
 
@@ -56,7 +57,6 @@ docker run -it --cap-add=SYS_ADMIN \
 ```
 
 ## TODO
-- Add tslint
 - Add tests
 - Add state machine to scenes
 - Add Google Authenticator for Admin proof
