@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import { CURRENT_PRESET_ENV, EnvironmentManager } from './environment';
 
 const DEFAULT_PRESET = 'dev';
