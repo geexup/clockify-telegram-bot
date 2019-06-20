@@ -1,6 +1,6 @@
 {
   "name": "clockify-telegram-bot",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Telegram bot for clockify",
   "author": "Lex Yudin @geexup",
   "license": "MIT",
