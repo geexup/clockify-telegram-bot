@@ -21,6 +21,6 @@ export async function getProjects(ctx: ContextMessageUpdate, workspace: CKLId, p
   return {
     next: projects.length > PAGE_SIZE,
     previous: page > 1,
-    projects: projects.slice(1)
+    projects: projects.slice(0, projects.length - 1)
   };
 }
