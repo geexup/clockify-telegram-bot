@@ -14,6 +14,8 @@ export const en_us: I18n = {
     'First of all you need to log in /login',
 
   MENU_BACK: 'Back',
+  MENU_NEXT: 'Next',
+  MENU_PREVIOUS: 'Previous',
 
   MENU_MAIN_TITLE_MD: '*Select action*:',
   MENU_MAIN_INFO: 'User info',

@@ -14,6 +14,8 @@ export const ru_ru: I18n = {
     'Чтобы работать с ботом, нужно залогиниться /login',
 
   MENU_BACK: 'Назад',
+  MENU_NEXT: 'Дальше',
+  MENU_PREVIOUS: 'Предыдущие',
 
   MENU_MAIN_TITLE_MD: '*Выберете действие*:',
   MENU_MAIN_INFO: 'Информация о пользователе',

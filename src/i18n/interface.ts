@@ -14,6 +14,10 @@ export interface I18n {
   /** Bot started welcome message */
   LIFECYCLE_ON_START: string;
 
+  /** Back & Next Buttons */
+  MENU_PREVIOUS: string;
+  MENU_NEXT: string;
+
   /** (Menu) Main Title */
   MENU_MAIN_TITLE_MD: string;
   /** (Menu) Main -> Info */

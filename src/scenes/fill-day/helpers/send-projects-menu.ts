@@ -5,7 +5,7 @@ import { I18nManager } from '../../../i18n';
 import { getClockify } from '../../../utils/get-clockify';
 import { getSession } from '../../../utils/session';
 import { getProjects } from './get-projects';
-import { FILL_DAY_STATE, IFillDayState } from './states';
+import { IFillDayState } from './states';
 
 export async function sendProjectsMenu(ctx: MongoSessionContext) {
   const user = await getClockify(ctx).user.get();
@@ -15,8 +15,8 @@ export async function sendProjectsMenu(ctx: MongoSessionContext) {
   state.projects = projects;
 
   const navigationButtons = [];
-  if (previous) navigationButtons.push('◀️ ' + 'Prev');
-  if (next) navigationButtons.push('▶️ ' + 'Next');
+  if (previous) navigationButtons.push('◀️ ' + I18nManager.getString(ctx, 'MENU_PREVIOUS'));
+  if (next) navigationButtons.push('▶️ ' + I18nManager.getString(ctx, 'MENU_NEXT'));
 
   await ctx.saveSession();
   await ctx.reply(
